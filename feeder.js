@@ -61,16 +61,16 @@ async function main() {
 		if(!title) continue;
 
 		if(title.length<=30 && row.subtitle) {
-			title += ':' + row.subtitle;
+			title += ': ' + row.subtitle;
 		}
 		
 		title = he.decode(title);
 		title = title.replace(/<!\[CDATA\[/g, '');
 		title = title.replace(/\]\]>/g, '');
-		title = title.replace(/<(?:.|\n)*?>/gm, '');
+		title = title.replace(/<[a-zA-Z\/].*?>/g, '');
 		
 		batch.push({
-			title: row.title,
+			title: title,
 			authors: row.authors,
 			doi: row.doi
 		});
